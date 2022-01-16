@@ -34,7 +34,10 @@ ID | param | type | description | example |
 21 | sender | string | get from metamask  | 
 
 ```Note: sender, fee_recipient get from metamask when connected with our website```
-![Alt text](./metamask.png?raw=true "Metamask")
+<p align="center">
+  <img src="https://github.com/Sotatek-MinhNguyen4/fcx-docs/blob/master/metamask.png">
+</p>
+
 #### Example of create limit buy order on bsc network
 ```bash 
 curl 'http://localhost:3000/api/v1/order' \
