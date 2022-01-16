@@ -33,7 +33,9 @@ ID | param | type | description | example |
 20 | order_hash | string | data create order hashed required when create order on bsc network, stellar not required ```(use LimitOrder of @0x/protocol-utils, function getHash())```  | 
 21 | sender | string | get from metamask  | 
 
-```Note: sender, fee_recipient get from metask when connected with our website```
+```Note: sender, fee_recipient get from metamask when connected with our website```
+![Alt text](./metamask.png?raw=true "Metamask")
+
 #### Example of create limit buy order on bsc network
 ```bash 
 curl 'http://localhost:3000/api/v1/order' \
