@@ -1,5 +1,5 @@
 # BASE URL: https://api.fcx.velo.org
-#1. LIST ORDER API
+# 1. LIST ORDER API
 ### 1.1 Api create order
 
 #### For Stellar order, the flow follows Stellar DEX
@@ -254,7 +254,7 @@ curl 'http://localhost:3000/api/v1/order/list?page=1&limit=8&method\[\]=1&method
 }
 ```
 
-#2. PAIR API
+# 2. PAIR API
 ### 2.1 Api list pair support
 #### GET /api/v1/pair/list
 #### Example request
@@ -330,7 +330,8 @@ curl 'http://localhost:3000/api/v1/pair/list' \
   }
 }
 ```
-#3. TRADE API
+
+# 3. TRADE API
 ### 3.1 Api list trade history
 #### GET /api/v1/trades/list
 ID | param | type | description | example |
@@ -425,5 +426,113 @@ curl 'http://localhost:3000/api/v1/trades/list?page=1&limit=8&tradeMethodTab\[\]
     "totalPage":1,
     "timestamp":"2022-01-16T14:28:02.694Z"
   }
+}
+```
+
+# 4. SOR API
+
+- Production url: https://sor.fcx.velo.org/
+
+### 4.1 Api find best orders
+#### GET /swap/v1/quote
+ID | param | type | description | example |
+--- | --- | --- | --- | --- |
+1 | buyToken | string | buy token address | 0xb365AB13bC6Bd2826a0217A5d3C26C4da9C739CA |
+2 | sellToken | string | sell token address | 0x0586a2240013dAAA41Ec91C4447a0E9e30c4BECc |
+2 | sellAmount | number | desired amount of token which you want to sell | 1000000000000000000 |
+2 | buyAmount | number | desired amount of token which you want to buy | 1000000000000000000 |
+3 | xlmFeeRate | number | xlm orderbook fee rate | 0.00120000 |
+4 | fcxFeeRate | number | fcx orderbook fee rate | 0.00150000 |
+5 | includedSources | string | selected source, allow value = [ABalancer, RBalancer, UBalancer, PancakeSwapV2, XLM, FCX, MultiHop] | MultiHop,ABalancer |
+6 | slippagePercentage | number | Slippage tolerance: 0.9 = 90% | 0.9 |
+
+#### Request example
+
+```bash 
+curl 'https://sor.fcx.velo.org/swap/v1/quote?buyToken=0xb365AB13bC6Bd2826a0217A5d3C26C4da9C739CA&sellToken=0x0586a2240013dAAA41Ec91C4447a0E9e30c4BECc&sellAmount=1000000000000000000&xlmFeeRate=0.00120000&fcxFeeRate=0.00150000&includedSources=MultiHop,ABalancer&slippagePercentage=0.9'
+```
+#### Success Response
+```json
+{
+  "chainId": 56,
+  "price": "0.044376493728599927",
+  "guaranteedPrice": "0.004437649372859991",
+  "to": "0xa29972160d9676898856C600eC922Df98486fd8B",
+  "data": "0x...",
+  "value": "0",
+  "gas": "510000",
+  "estimatedGas": "510000",
+  "gasPrice": "117000000000",
+  "protocolFee": "0",
+  "minimumProtocolFee": "0",
+  "buyTokenAddress": "0xb365ab13bc6bd2826a0217a5d3c26c4da9c739ca",
+  "sellTokenAddress": "0x0586a2240013daaa41ec91c4447a0e9e30c4becc",
+  "buyAmount": "44376493728599927",
+  "sellAmount": "1000000000000000000",
+  "sources": [
+    {
+      "name": "PancakeSwap_V2",
+      "proportion": "0"
+    },
+    {
+      "name": "Balancer",
+      "proportion": "1"
+    },
+    {
+      "name": "XLM",
+      "proportion": "0"
+    },
+    {
+      "name": "FCX",
+      "proportion": "0"
+    },
+    {
+      "name": "ABalancer",
+      "proportion": "0"
+    },
+    {
+      "name": "RBalancer",
+      "proportion": "0"
+    },
+    {
+      "name": "UBalancer",
+      "proportion": "0"
+    },
+    {
+      "name": "MultiHop",
+      "proportion": "0"
+    }
+  ],
+  "orders": [
+    {
+      "makerToken": "0xb365ab13bc6bd2826a0217a5d3c26c4da9c739ca",
+      "takerToken": "0x0586a2240013daaa41ec91c4447a0e9e30c4becc",
+      "makerAmount": "30837652331544832",
+      "takerAmount": "459663317223278526",
+      "fillData": {
+        "poolAddress": "0x6a0bf9e116f084738f698826b6ba2b1a9d738a10"
+      },
+      "source": "Balancer",
+      "sourcePathId": "0xeab5512132a18c82e3aeeca427d25cdca2f2ea9e75dc189c7ac07f424c0a762d",
+      "type": 0,
+      "baseQuotePrice": "14.905911522748249263"
+    },
+    {
+      "makerToken": "0xb365ab13bc6bd2826a0217a5d3c26c4da9c739ca",
+      "takerToken": "0x0586a2240013daaa41ec91c4447a0e9e30c4becc",
+      "makerAmount": "13538841397055095",
+      "takerAmount": "540336682776721474",
+      "fillData": {
+        "poolAddress": "0xfeda6a3067cf941b83a0855f58d43baf42301e63"
+      },
+      "source": "Balancer",
+      "sourcePathId": "0xa28acea59b0ea6c3fd5241d79f3322fac7d1fc69ceb045163b83a2518c0f1342",
+      "type": 0,
+      "baseQuotePrice": "39.910112463113199904"
+    }
+  ],
+  "allowanceTarget": "0xa29972160d9676898856C600eC922Df98486fd8B",
+  "sellTokenToEthRate": "0",
+  "buyTokenToEthRate": "0"
 }
 ```
