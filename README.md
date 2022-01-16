@@ -1,12 +1,16 @@
 # BASE URL: https://api.fcx.velo.org
 #1. LIST ORDER API
 ### 1.1 Api create order
+
+#### For Stellar order, the flow follows Stellar DEX
+#### For swapping order, users interact directly with the smart contract via MetaMask
 #### Workflow create bsc order:
 - Send coin to host wallet via metamask
 - Get value from metamask for parameter of create order api
 - Order with pending status created success response
 - BE check and update order status to active
 - Order listed and can match
+
 #### POST /api/v1/order
 ID | param | type | description | example |
 --- | --- | --- | --- | --- |
