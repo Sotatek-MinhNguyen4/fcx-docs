@@ -344,3 +344,82 @@ ID | param | type | description | example |
 10 | coinId (optional) | number | type |  |
 11 | startDate (optional) | date | start date |  |
 12 | endDate (optional) | date | end date |  |
+
+#### Request example
+```bash 
+curl 'http://localhost:3000/api/v1/trades/list?page=1&limit=8&tradeMethodTab\[\]=4&tradeMethodTab\[\]=8&transactionType=Swap' \
+  -H 'Connection: keep-alive' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="90", "Google Chrome";v="90"' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE0OSwiaWF0IjoxNjQyMzQzMTYzLCJleHAiOjE2NDIzNDM3NjN9.4lmL94RCDL11BZ9RZ46jdY_jDkdiT9IzHVZstd3oyXA' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36' \
+  -H 'Origin: http://localhost:3001' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: http://localhost:3001/' \
+  -H 'Accept-Language: en-US,en;q=0.9,vi;q=0.8' \
+  --compressed
+```
+#### Success Response
+```json
+{
+  "code":0,
+  "data":[
+    {
+      "trade_id":4,
+      "pair_id":2,
+      "buy_user_id":-1,
+      "sell_user_id":149,
+      "buy_order_id":-1,
+      "sell_order_id":49,
+      "price":"0.48952110",
+      "filled_amount":"48.95211000",
+      "sell_fee":"0.09790422",
+      "buy_fee":"0.00000000",
+      "buy_address":"",
+      "sell_address":"0xeb1fb1aa35fca89be1e1ac04fdcf1d7e18edb5f1",
+      "network":8,
+      "pool_id":null,
+      "txid":"0x154456ba8fcbe2e39a6cd6192def4d45a75ad3fc82eb1a0bc882be56556470c2",
+      "created_at":"2021-11-15T04:14:55.000Z",
+      "updated_at":"2021-11-15T04:14:55.000Z",
+      "base_name":"vEUR",
+      "quote_name":"vTHB",
+      "buy_amount":null,
+      "sell_amount":null
+    },
+    {
+      "trade_id":3,
+      "pair_id":2,
+      "buy_user_id":149,
+      "sell_user_id":-1,
+      "buy_order_id":48,
+      "sell_order_id":-1,
+      "price":"1.95580900",
+      "filled_amount":"19.55809000",
+      "sell_fee":"0.00000000",
+      "buy_fee":"0.03911618",
+      "buy_address":"0xeb1fb1aa35fca89be1e1ac04fdcf1d7e18edb5f1",
+      "sell_address":"",
+      "network":8,
+      "pool_id":null,
+      "txid":"0x447a9859cadf7efc4f108dcd01b87cad855836e22b957beca4cd11c34ce8c2f4",
+      "created_at":"2021-11-15T04:14:07.000Z",
+      "updated_at":"2021-11-15T04:14:07.000Z",
+      "base_name":"vEUR",
+      "quote_name":"vTHB",
+      "buy_amount":null,
+      "sell_amount":null
+    }
+  ],
+  "metadata":{
+    "page":1,
+    "limit":8,
+    "totalItem":5,
+    "totalPage":1,
+    "timestamp":"2022-01-16T14:28:02.694Z"
+  }
+}
+```
